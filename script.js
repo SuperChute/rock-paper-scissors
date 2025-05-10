@@ -5,36 +5,21 @@ const score = {
 };
 
 function play(playerChoice) {
-  let computerMove,computerOutput,playerOutput;
+  let computerMove;
   let randNum = Math.random(); 
   randNum = randNum.toFixed(2);  
-
-  const rock = document.getElementById('rock-svg');
-  const paper = document.getElementById('paper-svg');
-  const scissors = document.getElementById('scissors-svg');
 
   if(randNum >= 0.66 )
   { 
     computerMove = 'rock';
-    computerOutput = rock;
   } else if (randNum >= 0.33 )
   { 
     computerMove = 'paper';
-    computerOutput = paper;
   } else 
   { 
     computerMove = 'scissors';
-    computerOutput = scissors;
   } 
-
-  if (playerChoice === 'rock'){ 
-    playerOutput = rock;
-  } else if (playerChoice ==='paper'){ 
-    playerOutput = paper;
-  } else{ 
-    playerOutput = scissors;
-  } 
-
+  
   if (playerChoice === computerMove){  
     score.draws++;
     document.querySelector('.js-result').textContent = 'Draw!';
@@ -55,8 +40,8 @@ function play(playerChoice) {
   localStorage.setItem('draws', score.draws); 
 
   document.querySelector('.js-output').innerHTML = `
-  You <img src="${playerOutput.src}" class="mini-img"> 
-  <img src="${computerOutput.src}" class="mini-img"> Computer
+  You <img src="images/${playerChoice}.svg" class="mini-img"> 
+  <img src="images/${computerMove}.svg" class="mini-img"> Computer
 `;
 
   displayScore();
